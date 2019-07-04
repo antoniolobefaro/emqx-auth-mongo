@@ -26,7 +26,5 @@ start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 init([]) ->
-    {ok, PoolEnv} = application:get_env(?APP, server),
-    PoolSpec = ecpool:pool_spec(?APP, ?APP, ?APP, PoolEnv),
-    {ok, {{one_for_all, 10, 100}, [PoolSpec]}}.
+    {ok, { {one_for_all, 0, 1}, []} }.
 %% init not changed with mongo persistence 
