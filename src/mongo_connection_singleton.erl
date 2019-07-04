@@ -7,7 +7,7 @@
 %%% Created : 08. 十一月 2018 下午12:59
 %%%-------------------------------------------------------------------
 -module(mongo_connection_singleton).
--author("liuxuehao").
+-author("Lob with liuxuehao").
 
 %% API
 -export([get_singleton/0]).
@@ -48,7 +48,6 @@ update(Selector, Document) ->
   Connection = get_mongo_connection(),
   mc_worker_api:update(Connection, <<"message">>, Selector, Document).
 
-%% 获取进程字典的数据库连接示例
 get_mongo_connection() ->
   case get(?DIC_MONGO_CONNECTION) of
     undefined ->
@@ -58,7 +57,6 @@ get_mongo_connection() ->
     Connection -> Connection
   end.
 
-%% 连接数据库
 connect_mongo() ->
   {ok, Connection} = mc_worker_api:connect([{auth_source, <<"dengyin">>}, {database, <<"dengyin">>}, {login, <<"dengyin">>}, {password, <<"dengyin">>}, {host, "localhost"}, {port, 27017}]),
   {ok, Connection}.
