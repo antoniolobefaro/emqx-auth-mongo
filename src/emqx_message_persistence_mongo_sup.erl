@@ -16,7 +16,7 @@
 
 -behaviour(supervisor).
 
--include("emqx_auth_mongo.hrl").
+-include("emqx_message_persistence_mongo.hrl").
 
 -export([start_link/0]).
 

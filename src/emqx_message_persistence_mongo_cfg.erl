@@ -12,13 +12,13 @@
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
 
--module(emqx_auth_mongo_cfg).
+-module(emqx_message_persistence_mongo_cfg).
 
 -export([ register/0
         , unregister/0
         ]).
 
--include("emqx_auth_mongo.hrl").
+-include("emqx_message_persistence_mongo.hrl").
 
 register() ->
     clique_config:load_schema([code:priv_dir(?APP)], ?APP),
