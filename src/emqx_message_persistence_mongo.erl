@@ -18,7 +18,7 @@
 
 -include_lib("emqx/include/emqx.hrl").
 -include_lib("emqx/include/logger.hrl").
--include_lib("emqx/include/mongoc.hrl").
+-include_lib("mongoc.hrl").
 
 -export([load/1, unload/0]).
 
