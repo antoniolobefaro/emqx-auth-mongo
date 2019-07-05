@@ -90,7 +90,7 @@ on_message_publish(Message, _Env) ->
     <<"qos">> => integer_to_binary(Message#message.qos),
     <<"from">> => Message#message.from,
     <<"flags">> => Message#message.flags,
-    <<"headers">> => Message#message.headers,
+%%    <<"headers">> => Message#message.headers,
     <<"topic">> => Message#message.topic,
     <<"payload">> => Message#message.payload,
     <<"timestamp">> => integer_to_binary(calendar:datetime_to_gregorian_seconds(calendar:now_to_universal_time(Message#message.timestamp))),
