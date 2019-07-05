@@ -2,11 +2,11 @@ emqx_message_persistence_mongo
 ===============
 
 EMQ X message persistence in MongoDB
---
+***
 in emqx 
 --
 in rebar.config add 
-
+```
 {deps,
 
     [
@@ -30,6 +30,6 @@ in rebar.config add
     , {emqx_message_persistence_mongo, load}
     
     ]}.
-    
+```
 
 
