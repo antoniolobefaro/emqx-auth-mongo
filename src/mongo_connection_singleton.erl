@@ -15,7 +15,7 @@
 -define(SINGLETON_NAME, mongo_connection_singleton).
 -define(DIC_MONGO_CONNECTION, dic_mongo_connection).
 
-%% 对外接口，获取单例进程
+%% Interfaccia esterna, ottenere processo singleton
 get_singleton() ->
   case whereis(?SINGLETON_NAME) of
     undefined ->
@@ -27,7 +27,7 @@ get_singleton() ->
     Pid -> Pid
   end.
 
-%% 单例实体循环
+%% Ciclo entità singolo caso
 singleton_loop() ->
   receive
     {insert, Document} ->
@@ -58,7 +58,7 @@ get_mongo_connection() ->
   end.
 
 connect_mongo() ->
-  {ok, Connection} = mc_worker_api:connect([{auth_source, <<"dengyin">>}, {database, <<"dengyin">>}, {login, <<"dengyin">>}, {password, <<"dengyin">>}, {host, "localhost"}, {port, 27017}]),
+  {ok, Connection} = mc_worker_api:connect([ {database, <<"mqtt">>}, {host, "localhost"}, {port, 27017}]),
   {ok, Connection}.
 
 disconnect() ->
