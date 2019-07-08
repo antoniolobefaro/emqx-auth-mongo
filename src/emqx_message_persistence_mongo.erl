@@ -85,6 +85,7 @@ on_message_publish(Message, _Env) ->
          true -> binary:list_to_bin(integer_to_list(binary:decode_unsigned(Message#message.id)));
          false -> <<"">>
        end,
+  Topics = string:split(Message#message.topic, "/", all),
   MessageMap = #{
     <<"id">> => Id,
     <<"qos">> => integer_to_binary(Message#message.qos),
@@ -92,12 +93,29 @@ on_message_publish(Message, _Env) ->
     <<"flags">> => Message#message.flags,
 %%    <<"headers">> => Message#message.headers,
     <<"topic">> => Message#message.topic,
+    <<"t1">> => check_if_exist(1,Topics),
+    <<"t2">> => check_if_exist(2,Topics),
+    <<"t3">> => check_if_exist(3,Topics),
+    <<"t4">> => check_if_exist(4,Topics),
+    <<"t5">> => check_if_exist(5,Topics),
+    <<"t6">> => check_if_exist(6,Topics),
+    <<"t7">> => check_if_exist(7,Topics),
+    <<"t8">> => check_if_exist(8,Topics),
+    <<"t9">> => check_if_exist(9,Topics),
+    <<"topic">> => Message#message.topic,
     <<"payload">> => Message#message.payload,
     <<"timestamp">> => integer_to_binary(calendar:datetime_to_gregorian_seconds(calendar:now_to_universal_time(Message#message.timestamp))),
     <<"status">> => <<"publish">>
   },
   mongo_connection_singleton:get_singleton() ! {insert, [MessageMap]},
   {ok, Message}.
+
+check_if_exist(Ind, Lista) ->
+  Length = length(Lista),
+  if 
+    Length >= Ind -> lists:nth(Ind, Lista);
+    Length < Ind  -> ""
+  end.
 
 on_message_delivered(#{client_id := ClientId}, Message, _Env) ->
   io:format("Delivered message to client(~s): ~s~n", [ClientId, emqx_message:format(Message)]),
