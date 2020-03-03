@@ -106,7 +106,8 @@ on_message_publish(Message, _Env) ->
     <<"t9">> => check_if_exist(9,Topicsfreeall),
     <<"topic">> => Message#message.topic,
     <<"payload">> => Message#message.payload,
-    <<"timestamp">> => integer_to_binary(calendar:datetime_to_gregorian_seconds(calendar:now_to_universal_time(Message#message.timestamp))),
+%%    <<"timestamp">> => integer_to_binary(calendar:datetime_to_gregorian_seconds(calendar:now_to_universal_time(Message#message.timestamp))),
+    <<"timestamp">> => Message#message.timestamp,             
     <<"status">> => <<"publish">>
   },
   mongo_connection_singleton:get_singleton() ! {insert, [MessageMap]},
